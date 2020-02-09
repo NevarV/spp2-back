@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class MainController {
     @GetMapping("/users")
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/search")
+    public List<User> searchByName(@RequestParam("Name") String name) {
+        return userRepository.findByName(name);
     }
 
     @PostMapping("/users")

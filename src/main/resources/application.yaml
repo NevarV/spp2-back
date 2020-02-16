@@ -7,3 +7,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+nevar:
+  app:
+    jwtSecret: nevarSecretKey
+    jwtExpirationMs: 86400000

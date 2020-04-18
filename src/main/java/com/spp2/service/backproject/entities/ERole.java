@@ -1,7 +1,6 @@
 package com.spp2.service.backproject.entities;
 
 public enum ERole {
-    ROLE_USER,
-    ROLE_MODERATOR,
-    ROLE_ADMIN
+    ROLE_READ,
+    ROLE_WRITE
 }

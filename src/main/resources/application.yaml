@@ -1,9 +1,14 @@
 spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:49162/ADMINKA?createDatabaseIfNotExist=true
-    username: root
-    password: password
+    url: jdbc:mysql://zpj83vpaccjer3ah.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/gbgnzpd3fz9ypa8g?createDatabaseIfNotExist=true
+    username: wbg0535serrhpm4p
+    password: u2p6g3w4nl3bjxo9
+    hikari:
+      maximum-pool-size: 2
   jpa:
     hibernate:
       ddl-auto: update

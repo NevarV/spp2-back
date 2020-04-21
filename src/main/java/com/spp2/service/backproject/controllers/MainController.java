@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class MainController {
@@ -36,6 +36,24 @@ public class MainController {
     @GetMapping("/search")
     public List<User> searchByName(@RequestParam("Name") String name) {
         return userRepository.findByName(name);
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUser(@PathVariable("id") Long id) {
+        return userRepository.getOne(id);
+    }
+
+    @PutMapping("/users/{id}/edit")
+    public ResponseEntity editUser(@RequestBody User user, @PathVariable("id") Long id) {
+        HttpStatus status;
+        user.setId(id);
+        try {
+            userRepository.save(user);
+            status = HttpStatus.OK;
+        } catch (Exception ex) {
+            status = HttpStatus.BAD_REQUEST;
+        }
+        return new ResponseEntity(status);
     }
 
     @PostMapping("/users")

@@ -4,6 +4,7 @@ import com.spp2.service.backproject.security.components.AuthEntryPointJwt;
 import com.spp2.service.backproject.security.filters.AuthTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -55,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/auth/**").permitAll()
-                .antMatchers("/api/**").authenticated();
-
+                .antMatchers(HttpMethod.GET, "/api/**").hasRole("READ")
+                .antMatchers("/api/**").hasRole("WRITE");
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

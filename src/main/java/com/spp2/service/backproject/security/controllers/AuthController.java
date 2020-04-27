@@ -77,7 +77,7 @@ public class AuthController {
         if (clientRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body(new MessageResponse("Error: Username is already taken!", false));
         }
 
         // Create new user's account
@@ -111,6 +111,6 @@ public class AuthController {
         client.setRoles(roles);
         clientRepository.save(client);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!", true));
     }
 }

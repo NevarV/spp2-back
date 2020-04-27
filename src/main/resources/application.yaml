@@ -16,3 +16,6 @@ nevar:
   app:
     jwtSecret: nevarSecretKey
     jwtExpirationMs: 86400000
+graphql:
+  servlet:
+    corsEnabled: false

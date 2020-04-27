@@ -1,0 +1,49 @@
+input InputUser {
+    id: Int
+    name: String
+    age: Int
+}
+
+input SignUpRequest {
+    username: String
+    role: [String]
+    password: String
+}
+
+input LoginRequest {
+    username: String
+    password: String
+}
+
+type User {
+    id: Int
+    name: String
+    age: Int
+}
+
+type MessageResponse {
+    message: String
+    successfully: Boolean
+}
+
+type JwtResponse {
+    token: String
+    type: String
+    id: Int
+    username: String
+    roles: [String]
+}
+
+type Query {
+    getUsers: [User]
+    getUserById(id: Int): User
+    getUsersByName(name: String): [User]
+    authenticateUser(loginRequest: LoginRequest): JwtResponse
+}
+
+type Mutation {
+    addUser(user: InputUser): Boolean
+    editUser(user: InputUser): Boolean
+    deleteUser(id: Int): Boolean
+    registerUser(signUpRequest: SignUpRequest): MessageResponse
+}
